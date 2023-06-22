@@ -1,0 +1,99 @@
+#! Test pipeline used when ootb-supply-chain-testing or ootb-supply-chain-testing-scanning is enabled.
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: test-pipeline
+  labels:
+    apps.tanzu.vmware.com/pipeline: test
+spec:
+  params:
+  - name: source-url
+  - name: source-revision
+  tasks:
+  - name: check-build-tool
+    params:
+    - name: source-url
+      value: $(params.source-url)
+    - name: source-revision
+      value: $(params.source-revision)
+    taskSpec:
+      params:
+      - name: source-url
+      - name: source-revision
+      results:
+      - name: build-tool
+      steps:
+      - name: check-file
+        image: alpine
+        script: |
+          cd `mktemp -d`
+          wget -qO- $(params.source-url) | tar xvz -m
+
+          if test -f .skiptests; then
+            printf skiptests | tee /tekton/results/build-tool
+          elif test -f package.json; then
+            printf npm | tee /tekton/results/build-tool
+          else
+            printf maven | tee /tekton/results/build-tool
+          fi
+  - name: test-skip
+    when:
+    - input: "$(tasks.check-build-tool.results.build-tool)"
+      operator: in
+      values: ["skiptests"]
+    runAfter:
+    - check-build-tool
+    taskSpec:
+      steps:
+      - name: test
+        image: ubuntu:jammy
+        script: |-
+          echo "Skipping tests"
+  - name: test-mvn
+    params:
+    - name: source-url
+      value: $(params.source-url)
+    - name: source-revision
+      value: $(params.source-revision)
+    when:
+    - input: "$(tasks.check-build-tool.results.build-tool)"
+      operator: in
+      values: ["maven"]
+    runAfter:
+    - check-build-tool
+    taskSpec:
+      params:
+      - name: source-url
+      - name: source-revision
+      steps:
+      - name: test
+        image: maven:3.8-eclipse-temurin-17-alpine
+        script: |-
+          cd `mktemp -d`
+          wget -qO- $(params.source-url) | tar xvz -m
+          mvn --batch-mode --no-transfer-progress test
+  - name: test-npm
+    params:
+    - name: source-url
+      value: $(params.source-url)
+    - name: source-revision
+      value: $(params.source-revision)
+    when:
+    - input: "$(tasks.check-build-tool.results.build-tool)"
+      operator: in
+      values: ["npm"]
+    runAfter:
+    - check-build-tool
+    taskSpec:
+      params:
+      - name: source-url
+      - name: source-revision
+      steps:
+      - name: test
+        image: node:14
+        script: |-
+          cd `mktemp -d`
+          wget -qO- $(params.source-url) | tar xvz -m
+          export CI=true
+          npm install
+          npm run test

@@ -1,0 +1,47 @@
+tap_install:
+  values:
+    profile: iterate
+
+    shared:
+      ingress_domain: dev.withtanzu.com
+      ingress_issuer: ""
+
+    excluded_packages:
+    - apis.apps.tanzu.vmware.com
+
+    ceip_policy_disclosed: true
+
+    supply_chain: basic
+    ootb_supply_chain_basic:
+      registry:
+        server: tdkhub.azurecr.io
+        repository: tanzu-application-platform/dev/workloads
+      gitops:
+        ssh_secret: git-credentials
+
+    appliveview_connector:
+      backend:
+        sslDeactivated: true
+        ingressEnabled: true
+        host: appliveview.apps.withtanzu.com
+
+    springboot_conventions:
+      autoConfigureActuators: true
+
+    package_overlays:
+    - name: tap-telemetry
+      secrets:
+      - name: overlay-disable-tap-telemetry
+
+    namespace_provisioner:
+      controller: false
+      gitops_install:
+        url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+        ref: origin/main
+        subPath: clusters/tap-iterate/cluster-config/namespace-provisioner/namespaces
+      additional_sources:
+      - git:
+          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+          ref: origin/main
+          subPath: clusters/tap-iterate/cluster-config/namespace-provisioner/resources
+        path: _ytt_lib/namespace-provisioner-resources

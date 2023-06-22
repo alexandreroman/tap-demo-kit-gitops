@@ -1,0 +1,10 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: clusters/tap-iterate/cluster-config/config/shared
+  contents:
+  - path: .
+    includePaths:
+    - "**/*.yaml"
+    directory:
+      path: clusters/shared/config

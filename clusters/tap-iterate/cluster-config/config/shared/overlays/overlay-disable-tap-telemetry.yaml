@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: overlay-disable-tap-telemetry
+  namespace: tap-install
+  annotations:
+    kapp.k14s.io/change-group: pkgi
+type: Opaque
+stringData:
+  tap-telemetry-remove.yml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"metadata":{"namespace":"tap-telemetry"}}),expects="1+"
+    #@overlay/remove
+    ---
