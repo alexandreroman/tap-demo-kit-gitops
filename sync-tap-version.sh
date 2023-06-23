@@ -3,8 +3,9 @@ set -euo pipefail
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-CLUSTERS=tap-iterate
-for CLUSTER in $CLUSTERS; do
+CLUSTERS=("tap-iterate" "tap-build")
+for CLUSTER in "${CLUSTERS[@]}"; do
+  echo "Synchronizing TAP version in cluster $CLUSTER..."
   TAP_INSTALL_VALUES_FILE=$SCRIPT_DIR/clusters/$CLUSTER/cluster-config/values/tap-install-values.yaml
   cat > $TAP_INSTALL_VALUES_FILE << EOF
 tap_install:

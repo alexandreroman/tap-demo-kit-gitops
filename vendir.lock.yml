@@ -4,4 +4,8 @@ directories:
   - directory: {}
     path: .
   path: clusters/tap-iterate/cluster-config/config/shared
+- contents:
+  - directory: {}
+    path: .
+  path: clusters/tap-build/cluster-config/config/shared
 kind: LockConfig

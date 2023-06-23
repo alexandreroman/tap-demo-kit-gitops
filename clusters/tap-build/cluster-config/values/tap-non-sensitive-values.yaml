@@ -1,0 +1,47 @@
+tap_install:
+  values:
+    profile: build
+
+    shared:
+      ingress_domain: build.withtanzu.com
+      ingress_issuer: ""
+
+    ceip_policy_disclosed: true
+
+    supply_chain: testing_scanning
+    ootb_supply_chain_testing_scanning:
+      gitops:
+        ssh_secret: git-credentials
+
+    metadata_store:
+      app_service_type: ClusterIP
+      ns_for_export_app_cert: "*"
+
+    scanning:
+      metadataStore:
+        url: ""
+
+    grype:
+      namespace: "default"
+      targetImagePullSecret: "registry-credentials"
+
+    package_overlays:
+    - name: tap-telemetry
+      secrets:
+      - name: overlay-disable-tap-telemetry
+    - name: ootb-supply-chain-testing-scanning
+      secrets:
+      - name: overlay-remove-source-scanner
+
+    namespace_provisioner:
+      controller: false
+      gitops_install:
+        url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+        ref: origin/main
+        subPath: clusters/tap-build/cluster-config/namespace-provisioner/namespaces
+      additional_sources:
+      - git:
+          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+          ref: origin/main
+          subPath: clusters/tap-build/cluster-config/namespace-provisioner/resources
+        path: _ytt_lib/namespace-provisioner-resources
