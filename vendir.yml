@@ -16,3 +16,11 @@ directories:
     - "**/*.yaml"
     directory:
       path: clusters/shared/config
+
+- path: clusters/tap-run-az/cluster-config/config/shared
+  contents:
+  - path: .
+    includePaths:
+    - "**/*.yaml"
+    directory:
+      path: clusters/shared/config

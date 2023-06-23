@@ -1,0 +1,7 @@
+---
+git:
+  url: git@github.com:alexandreroman/tap-demo-kit-gitops.git
+  ref: origin/main
+  sub_path: clusters/tap-run-az/cluster-config
+tap_package_repository:
+  oci_repository: tdkhub.azurecr.io/tanzu-application-platform/tap-packages

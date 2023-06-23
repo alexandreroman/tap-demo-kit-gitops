@@ -1,0 +1,14 @@
+tap_install:
+  values:
+    profile: run
+
+    shared:
+      ingress_domain: az.run.withtanzu.com
+      ingress_issuer: letscrypt
+
+    ceip_policy_disclosed: true
+
+    package_overlays:
+    - name: tap-telemetry
+      secrets:
+      - name: overlay-disable-tap-telemetry
