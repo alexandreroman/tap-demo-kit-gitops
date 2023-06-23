@@ -12,3 +12,6 @@ spec:
     - http01:
         ingress:
           class: contour
+          podTemplate:
+            spec:
+              serviceAccountName: cm-sa

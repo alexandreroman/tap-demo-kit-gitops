@@ -12,4 +12,8 @@ directories:
   - directory: {}
     path: .
   path: clusters/tap-run-az/cluster-config/config/shared
+- contents:
+  - directory: {}
+    path: .
+  path: clusters/tap-view/cluster-config/config/shared
 kind: LockConfig

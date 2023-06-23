@@ -7,4 +7,6 @@ all: sync
 
 sync:
 	./sync-tap-version.sh
+	./sync-certs.sh
+	./sync-icon.sh
 	vendir sync

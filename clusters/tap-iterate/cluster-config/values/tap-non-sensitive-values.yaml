@@ -3,7 +3,7 @@ tap_install:
     profile: iterate
 
     shared:
-      ingress_domain: dev.withtanzu.com
+      ingress_domain: apps.withtanzu.com
       ingress_issuer: ""
 
     excluded_packages:
@@ -21,9 +21,8 @@ tap_install:
 
     appliveview_connector:
       backend:
-        sslDeactivated: true
+        host: appliveview.tap.withtanzu.com
         ingressEnabled: true
-        host: appliveview.apps.withtanzu.com
 
     springboot_conventions:
       autoConfigureActuators: true

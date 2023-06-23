@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cm-sa
+  namespace: metadata-store
+  annotations:
+    kapp.k14s.io/change-group: pkgi
+imagePullSecrets:
+- name: install-registry-dockerconfig
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretImport
+metadata:
+  name: install-registry-dockerconfig
+  namespace: metadata-store
+  annotations:
+    kapp.k14s.io/change-group: pkgi
+spec:
+  fromNamespace: tanzu-sync

@@ -24,3 +24,13 @@ directories:
     - "**/*.yaml"
     directory:
       path: clusters/shared/config
+
+- path: clusters/tap-view/cluster-config/config/shared
+  contents:
+  - path: .
+    includePaths:
+    - "**/*.yaml"
+    excludePaths:
+    - "**/tap-gui-viewer-service-account-rbac.yaml"
+    directory:
+      path: clusters/shared/config

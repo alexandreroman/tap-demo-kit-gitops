@@ -1,0 +1,57 @@
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: apps
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-rule.0: upsert after upserting pkgi
+spec:
+  serviceAccountName: sync-sa
+  fetch:
+  - git:
+      url: https://github.com/alexandreroman/tap-demo-kit-apps.git
+      ref: origin/main
+      subPath: config
+  template:
+  - sops:
+      age:
+        privateKeysSecretRef:
+          name: sync-age-identity
+  - ytt:
+      inline:
+        paths:
+          ns.yml: |
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              name: apps
+              labels:
+                apps.tanzu.vmware.com/tap-ns: ""
+          kapp-config.yml: |
+            apiVersion: kapp.k14s.io/v1alpha1
+            kind: Config
+            rebaseRules:
+            - path: [metadata, annotations, serving.knative.dev/creator]
+              type: copy
+              sources: [new, existing]
+              resourceMatchers: &matchers
+              - apiVersionKindMatcher: {apiVersion: serving.knative.dev/v1, kind: Service}
+            - path: [metadata, annotations, serving.knative.dev/lastModifier]
+              type: copy
+              sources: [new, existing]
+              resourceMatchers: *matchers
+            templateRules:
+            - resourceMatchers:
+              - apiVersionKindMatcher: {apiVersion: v1, kind: ConfigMap}
+              affectedResources:
+                objectReferences:
+                - path: [spec, template, spec, volumes, {allIndexes: true}, configMap]
+                  resourceMatchers:
+                  - apiVersionKindMatcher: {apiVersion: serving.knative.dev/v1, kind: Service}
+                - path: [spec, template, spec, containers, {allIndexes: true}, envFrom, {allIndexes: true}, configMapRef]
+                  resourceMatchers:
+                  - apiVersionKindMatcher: {apiVersion: serving.knative.dev/v1, kind: Service}
+  deploy:
+  - kapp:
+      intoNs: apps
+      rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]

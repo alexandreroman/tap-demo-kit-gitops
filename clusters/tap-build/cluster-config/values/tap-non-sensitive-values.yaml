@@ -6,6 +6,9 @@ tap_install:
       ingress_domain: build.withtanzu.com
       ingress_issuer: ""
 
+    excluded_packages:
+    - contour.tanzu.vmware.com
+
     ceip_policy_disclosed: true
 
     supply_chain: testing_scanning
@@ -13,7 +16,7 @@ tap_install:
       gitops:
         ssh_secret: git-credentials
         commit_message: Commit by TAP Supply Chain
-        username: TAP Demo Kit
+        username: tap-demo-kit
         email: tap-demo-kit@vmware.com
         server_address: https://github.com
         repository_owner: alexandreroman
@@ -23,6 +26,21 @@ tap_install:
     grype:
       namespace: "default"
       targetImagePullSecret: "registry-credentials"
+      metadataStore:
+        url: https://metadata-store.tap.withtanzu.com
+        caSecret:
+          name: store-ca-cert
+          importFromNamespace: tap-secrets
+        authSecret:
+          name: store-auth-token
+          importFromNamespace: tap-secrets
+
+    scanning:
+      metadataStore:
+        url: ""
+
+    springboot_conventions:
+      autoConfigureActuators: true
 
     package_overlays:
     - name: tap-telemetry
@@ -39,6 +57,11 @@ tap_install:
         ref: origin/main
         subPath: clusters/tap-build/cluster-config/namespace-provisioner/namespaces
       additional_sources:
+      - git:
+          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+          ref: origin/main
+          subPath: clusters/tap-build/cluster-config/namespace-provisioner/overlays
+        path: _ytt_lib/customize
       - git:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main

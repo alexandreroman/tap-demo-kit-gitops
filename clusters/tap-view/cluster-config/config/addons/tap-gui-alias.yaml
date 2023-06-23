@@ -1,0 +1,28 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: tap-gui-alias
+  namespace: tap-gui
+spec:
+  routes:
+  - services:
+    - name: server
+      port: 7000
+  virtualhost:
+    fqdn: console.tap.withtanzu.com
+    tls:
+      secretName: tap-gui-cert
+    corsPolicy:
+      allowOrigin:
+      - "*" 
+      allowMethods:
+      - GET
+      - POST
+      - OPTIONS
+      allowHeaders:
+      - authorization
+      - cache-control
+      exposeHeaders:
+      - Content-Length
+      - Content-Range
+      maxAge: "10m"

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: overlay-add-tap-gui-alias
+  namespace: tap-install
+  annotations:
+    kapp.k14s.io/change-group: pkgi
+type: Opaque
+stringData:
+  tap-telemetry-remove.yml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind": "Certificate", "metadata":{"name":"tap-gui-cert"}}),expects=1
+    ---
+    spec:
+      dnsNames:
+      - console.tap.withtanzu.com
