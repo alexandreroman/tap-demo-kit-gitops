@@ -12,14 +12,13 @@ tap_install:
     ootb_supply_chain_testing_scanning:
       gitops:
         ssh_secret: git-credentials
-
-    metadata_store:
-      app_service_type: ClusterIP
-      ns_for_export_app_cert: "*"
-
-    scanning:
-      metadataStore:
-        url: ""
+        commit_message: Commit by TAP Supply Chain
+        username: TAP Demo Kit
+        email: tap-demo-kit@vmware.com
+        server_address: https://github.com
+        repository_owner: alexandreroman
+        repository_name: tap-demo-kit-apps
+        branch: main
 
     grype:
       namespace: "default"
