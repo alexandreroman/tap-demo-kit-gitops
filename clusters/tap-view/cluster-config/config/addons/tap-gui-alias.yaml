@@ -12,17 +12,3 @@ spec:
     fqdn: console.tap.withtanzu.com
     tls:
       secretName: tap-gui-cert
-    corsPolicy:
-      allowOrigin:
-      - "*" 
-      allowMethods:
-      - GET
-      - POST
-      - OPTIONS
-      allowHeaders:
-      - authorization
-      - cache-control
-      exposeHeaders:
-      - Content-Length
-      - Content-Range
-      maxAge: "10m"
