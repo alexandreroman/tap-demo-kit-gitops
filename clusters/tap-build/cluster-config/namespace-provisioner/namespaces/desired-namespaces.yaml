@@ -2,3 +2,4 @@
 ---
 namespaces:
 - name: spring-on-tap
+- name: foo
