@@ -46,7 +46,7 @@ spec:
     taskSpec:
       steps:
       - name: test
-        image: ubuntu:jammy
+        image: alpine
         script: |-
           echo "Skipping tests"
   - name: test-mvn
@@ -67,7 +67,7 @@ spec:
       - name: source-revision
       steps:
       - name: test
-        image: maven:3.8-eclipse-temurin-17-alpine
+        image: maven:3.9-eclipse-temurin-17-alpine
         script: |-
           cd `mktemp -d`
           wget -qO- $(params.source-url) | tar xvz -m
@@ -90,7 +90,7 @@ spec:
       - name: source-revision
       steps:
       - name: test
-        image: node:14
+        image: node:18-alpine
         script: |-
           cd `mktemp -d`
           wget -qO- $(params.source-url) | tar xvz -m
