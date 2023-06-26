@@ -10,6 +10,9 @@ metadata:
 spec:
   regoFile: |
     package main
+    #
+    # This is the STRICT configuration.
+    #
     # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
     notAllowedSeverities := ["Critical"]
     ignoreCves := []

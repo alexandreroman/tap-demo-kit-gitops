@@ -1,5 +1,5 @@
 #@ load("@ytt:data", "data")
-#@ if/end hasattr(data.values, 'scanPolicy') and data.values.scanPolicy == 'strict':
+#@ if/end hasattr(data.values, 'scanPolicy') and data.values.scanPolicy == 'lax':
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
@@ -10,6 +10,9 @@ metadata:
 spec:
   regoFile: |
     package main
+    #
+    # This is the LAX configuration.
+    #
     # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
     notAllowedSeverities := []
     ignoreCves := []
