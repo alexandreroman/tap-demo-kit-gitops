@@ -3,3 +3,6 @@
 namespaces:
 - name: spring-on-tap
 - name: foo
+  scanPolicy: lax
+- name: bar
+  scanPolicy: strict
