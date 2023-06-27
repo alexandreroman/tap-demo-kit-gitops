@@ -55,15 +55,15 @@ tap_install:
       gitops_install:
         url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
         ref: origin/main
-        subPath: clusters/tap-build/cluster-config/namespace-provisioner/namespaces
+        subPath: clusters/tap-build/namespace-provisioner/namespaces
       additional_sources:
       - git:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
-          subPath: clusters/tap-build/cluster-config/namespace-provisioner/overlays
+          subPath: clusters/tap-build/namespace-provisioner/overlays
         path: _ytt_lib/customize
       - git:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
-          subPath: clusters/tap-build/cluster-config/namespace-provisioner/resources
+          subPath: clusters/tap-build/namespace-provisioner/resources
         path: _ytt_lib/namespace-provisioner-resources

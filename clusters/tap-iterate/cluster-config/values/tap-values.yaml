@@ -38,10 +38,10 @@ tap_install:
       gitops_install:
         url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
         ref: origin/main
-        subPath: clusters/tap-iterate/cluster-config/namespace-provisioner/namespaces
+        subPath: clusters/tap-iterate/namespace-provisioner/namespaces
       additional_sources:
       - git:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
-          subPath: clusters/tap-iterate/cluster-config/namespace-provisioner/resources
+          subPath: clusters/tap-iterate/namespace-provisioner/resources
         path: _ytt_lib/namespace-provisioner-resources
