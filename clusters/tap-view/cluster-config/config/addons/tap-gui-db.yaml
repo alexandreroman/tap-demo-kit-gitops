@@ -10,7 +10,7 @@ spec:
   fetch:
   - helmChart:
       name: postgresql
-      version: "12.1.10"
+      version: "12.5.8"
       repository:
         url: https://charts.bitnami.com/bitnami
   template:
@@ -32,8 +32,7 @@ spec:
             metadata:
               name: tap-gui-db
   deploy:
-  - kapp:
-      rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]
+  - kapp: {}
 ---
 apiVersion: v1
 kind: Secret

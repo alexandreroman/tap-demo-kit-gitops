@@ -33,7 +33,19 @@ spec:
 EOF
 
 AUTH_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
-cat > $SCRIPT_DIR/clusters/shared/config/secrets/store-auth-token.yaml << EOF
+cat > $SCRIPT_DIR/clusters/shared/config/secrets/store-auth-token-export.yaml << EOF
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  name: store-auth-token
+  namespace: tap-secrets
+  annotations:
+    kapp.k14s.io/change-group: pkgi
+spec:
+  toNamespaces:
+  - '*'
+EOF
+cat > $SCRIPT_DIR/clusters/shared/config/secrets/store-auth-token.tmp.yaml << EOF
 ---
 apiVersion: v1
 kind: Secret
@@ -46,15 +58,6 @@ metadata:
     kapp.k14s.io/update-strategy: fallback-on-replace
 stringData:
   auth_token: $AUTH_TOKEN
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: store-auth-token
-  namespace: tap-secrets
-  annotations:
-    kapp.k14s.io/change-group: pkgi
-spec:
-  toNamespaces:
-  - '*'
 EOF
+sops --encrypt $SCRIPT_DIR/clusters/shared/config/secrets/store-auth-token.tmp.yaml > $SCRIPT_DIR/clusters/shared/config/secrets/store-auth-token.sops.yaml
+rm -f $SCRIPT_DIR/clusters/shared/config/secrets/store-auth-token.tmp.yaml
