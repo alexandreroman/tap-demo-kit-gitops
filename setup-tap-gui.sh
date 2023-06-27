@@ -36,5 +36,5 @@ for CLUSTER in "${CLUSTERS[@]}"; do
 EOF
 done
 
-sops --encrypt $TAP_GUI_FILE > clusters/tap-view/cluster-config/values/tap-gui-sensitive-values.sops.yaml
+sops --encrypt $TAP_GUI_FILE > clusters/tap-view/cluster-config/values/clusters-values.sops.yaml
 /bin/rm -f $TAP_GUI_FILE
