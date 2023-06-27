@@ -20,6 +20,7 @@ tap_install:
         ssh_secret: git-credentials
 
     appliveview_connector:
+      activateSensitiveOperations: true
       backend:
         host: appliveview.tap.withtanzu.com
         ingressEnabled: true
