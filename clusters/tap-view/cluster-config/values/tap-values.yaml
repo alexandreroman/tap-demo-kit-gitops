@@ -16,6 +16,8 @@ tap_install:
       ingressEnabled: true
 
     tap_gui:
+      deployment:
+        replicas: 3
       metadataStoreAutoconfiguration: true
       app_config:
         app:
