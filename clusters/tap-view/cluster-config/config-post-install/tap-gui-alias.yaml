@@ -8,6 +8,9 @@ spec:
   - services:
     - name: server
       port: 7000
+    timeoutPolicy:
+      idle: 30s
+      response: 30s
   virtualhost:
     fqdn: console.tap.withtanzu.com
     tls:

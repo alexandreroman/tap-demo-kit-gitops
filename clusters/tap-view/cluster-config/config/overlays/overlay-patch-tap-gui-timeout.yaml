@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: overlay-patch-tap-gui-timeout
+  namespace: tap-install
+stringData:
+  tap-gui-timeout.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind": "HTTPProxy", "metadata": {"name": "tap-gui"}})
+    ---
+    spec:
+      routes:
+        #@overlay/match by=overlay.subset({"services": [{"name": "server"}]})
+        #@overlay/match-child-defaults missing_ok=True
+        - timeoutPolicy:
+            idle: 30s
+            response: 30s
