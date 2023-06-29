@@ -74,6 +74,20 @@ spec:
           cd `mktemp -d`
           wget -qO- $(params.source-url) | tar xvz -m
           mvn --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=info verify
+        volumeMounts:
+        - mountPath: /var/run/
+          name: dind-socket
+      sidecars:
+      - image: docker:20.10.17-dind
+        name: docker
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run/
+          name: dind-socket
+      volumes:
+      - name: dind-socket
+        emptyDir: {}
   - name: test-gradle
     params:
     - name: source-url
@@ -97,6 +111,20 @@ spec:
           cd `mktemp -d`
           wget -qO- $(params.source-url) | tar xvz -m
           gradle test
+        volumeMounts:
+        - mountPath: /var/run/
+          name: dind-socket
+      sidecars:
+      - image: docker:20.10.17-dind
+        name: docker
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run/
+          name: dind-socket
+      volumes:
+      - name: dind-socket
+        emptyDir: {}
   - name: test-npm
     params:
     - name: source-url
