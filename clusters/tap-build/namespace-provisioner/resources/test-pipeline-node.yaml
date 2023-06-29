@@ -1,0 +1,39 @@
+#! Test pipeline used when ootb-supply-chain-testing or ootb-supply-chain-testing-scanning is enabled.
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: test-pipeline-node
+  labels:
+    apps.tanzu.vmware.com/pipeline: test
+    apps.tanzu.vmware.com/language: node
+  annotations:
+    kapp.k14s.io/create-strategy: fallback-on-update
+spec:
+  params:
+  - name: source-url
+  - name: source-revision
+  tasks:
+  - name: test
+    params:
+    - name: source-url
+      value: $(params.source-url)
+    - name: source-revision
+      value: $(params.source-revision)
+    taskSpec:
+      params:
+      - name: source-url
+      - name: source-revision
+      steps:
+      - name: test
+        image: node:18-alpine
+        script: |-
+          cd `mktemp -d`
+          wget -qO- $(params.source-url) | tar xvz -m
+          SKIP=".skiptests"
+          if [ -f "$SKIP" ]; then
+            echo "Skipping tests"
+            exit 0
+          fi
+          export CI=true
+          npm install
+          npm run test
