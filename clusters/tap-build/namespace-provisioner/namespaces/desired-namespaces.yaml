@@ -1,8 +1,6 @@
 #@data/values
 ---
 namespaces:
-- name: spring-on-tap
-- name: foo
+- name: stable
+- name: unsafe
   scanPolicy: lax
-- name: bar
-  scanPolicy: strict
