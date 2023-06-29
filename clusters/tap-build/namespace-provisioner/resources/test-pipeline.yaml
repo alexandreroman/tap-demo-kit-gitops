@@ -33,8 +33,10 @@ spec:
             printf skiptests | tee /tekton/results/build-tool
           elif test -f package.json; then
             printf npm | tee /tekton/results/build-tool
-          else
+          elif test -f pom.xml; then
             printf maven | tee /tekton/results/build-tool
+          elif test -f build.gradle; then
+            printf gradle | tee /tekton/results/build-tool
           fi
   - name: test-skip
     when:
@@ -71,7 +73,30 @@ spec:
         script: |-
           cd `mktemp -d`
           wget -qO- $(params.source-url) | tar xvz -m
-          mvn --batch-mode --no-transfer-progress test
+          mvn --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=info verify
+  - name: test-gradle
+    params:
+    - name: source-url
+      value: $(params.source-url)
+    - name: source-revision
+      value: $(params.source-revision)
+    when:
+    - input: "$(tasks.check-build-tool.results.build-tool)"
+      operator: in
+      values: ["gradle"]
+    runAfter:
+    - check-build-tool
+    taskSpec:
+      params:
+      - name: source-url
+      - name: source-revision
+      steps:
+      - name: test
+        image: gradle:8-jdk17-alpine
+        script: |-
+          cd `mktemp -d`
+          wget -qO- $(params.source-url) | tar xvz -m
+          gradle test
   - name: test-npm
     params:
     - name: source-url
