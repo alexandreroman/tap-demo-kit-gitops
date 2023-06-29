@@ -1,0 +1,36 @@
+tap_install:
+  values:
+    profile: run
+
+    shared:
+      ingress_domain: gke.run.withtanzu.com
+      ingress_issuer: letsencrypt
+
+    ceip_policy_disclosed: true
+
+    appliveview_connector:
+      activateSensitiveOperations: true
+      backend:
+        host: appliveview.tap.withtanzu.com
+        ingressEnabled: true
+
+    api_auto_registration:
+      tap_gui_url: https://console.tap.withtanzu.com
+      cluster_name: tap-run-gke
+
+    package_overlays:
+    - name: tap-telemetry
+      secrets:
+      - name: overlay-disable-tap-telemetry
+
+    cnrs:
+      domain_template: '{{.Name}}.{{.Domain}}'
+
+    namespace_provisioner:
+      controller: true
+      additional_sources:
+      - git:
+          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+          ref: origin/main
+          subPath: clusters/tap-run-gke/namespace-provisioner/resources
+        path: _ytt_lib/namespace-provisioner-resources

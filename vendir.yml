@@ -25,6 +25,14 @@ directories:
     directory:
       path: clusters/shared/config
 
+- path: clusters/tap-run-gke/cluster-config/config/shared
+  contents:
+  - path: .
+    includePaths:
+    - "**/*.yaml"
+    directory:
+      path: clusters/shared/config
+
 - path: clusters/tap-view/cluster-config/config/shared
   contents:
   - path: .

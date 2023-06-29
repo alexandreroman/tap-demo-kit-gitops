@@ -15,5 +15,9 @@ directories:
 - contents:
   - directory: {}
     path: .
+  path: clusters/tap-run-gke/cluster-config/config/shared
+- contents:
+  - directory: {}
+    path: .
   path: clusters/tap-view/cluster-config/config/shared
 kind: LockConfig
