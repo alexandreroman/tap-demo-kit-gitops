@@ -12,6 +12,8 @@ spec:
       url: https://github.com/alexandreroman/tap-demo-kit-apps.git
       ref: origin/main
       subPath: clusters/tap-run-gke
+      secretRef:
+        name: git-credentials
   template:
   - sops:
       age:
@@ -21,3 +23,14 @@ spec:
   deploy:
   - kapp:
       rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretImport
+metadata:
+  name: git-credentials
+  namespace: tanzu-sync
+  annotations:
+    tekton.dev/git-0: https://github.com
+    kapp.k14s.io/update-strategy: fallback-on-replace
+spec:
+  fromNamespace: tap-secrets

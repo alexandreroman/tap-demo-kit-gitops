@@ -34,3 +34,8 @@ tap_install:
           ref: origin/main
           subPath: clusters/tap-run-az/namespace-provisioner/resources
         path: _ytt_lib/namespace-provisioner-resources
+      - git:
+          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+          ref: origin/main
+          subPath: clusters/tap-run-az/namespace-provisioner/overlays
+        path: _ytt_lib/customize
