@@ -1,0 +1,56 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  labels:
+    provider: gcp
+  name: xpostgresqlinstances.bindable.gcp.database.example.org
+spec:
+  compositeTypeRef:
+    apiVersion: bindable.database.example.org/v1alpha1
+    kind: XPostgreSQLInstance
+  publishConnectionDetailsWithStoreConfigRef:
+    name: default
+  resources:
+  - base:
+      apiVersion: database.gcp.crossplane.io/v1beta1
+      kind: CloudSQLInstance
+      spec:
+        forProvider:
+          databaseVersion: POSTGRES_14
+          region: europe-west9
+          settings:
+            dataDiskType: PD_SSD
+            ipConfiguration:
+              authorizedNetworks:
+              - value: 0.0.0.0/0 # not recommended for production deployments!
+              ipv4Enabled: true
+            tier: db-custom-1-3840
+        writeConnectionSecretToRef:
+          namespace: crossplane-system
+    connectionDetails:
+    - name: type
+      value: postgresql
+    - name: provider
+      value: gcp
+    - name: database
+      value: postgres
+    - fromConnectionSecretKey: username
+    - fromConnectionSecretKey: password
+    - name: host
+      fromConnectionSecretKey: endpoint
+    - name: port
+      type: FromValue
+      value: "5432"
+    name: cloudsqlinstance
+    patches:
+    - fromFieldPath: metadata.uid
+      toFieldPath: spec.writeConnectionSecretToRef.name
+      transforms:
+      - string:
+          fmt: '%s-postgresql'
+          type: Format
+        type: string
+      type: FromCompositeFieldPath
+    - fromFieldPath: spec.parameters.storageGB
+      toFieldPath: spec.forProvider.settings.dataDiskSizeGb
+      type: FromCompositeFieldPath
