@@ -15,6 +15,14 @@ tap_install:
     appliveview:
       ingressEnabled: true
 
+    accelerator:
+      managed_resources:
+        enable: true
+        git:
+          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
+          ref: origin/main
+          sub_path: clusters/tap-view/accelerators
+
     tap_gui:
       deployment:
         replicas: 1
