@@ -37,7 +37,7 @@ spec:
           MVN="pom.xml"
           GRADLE="build.gradle"
           if [ -f "$MVN" ]; then
-            mvn --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=info verify
+            mvn --batch-mode --no-transfer-progress verify
           elif [ -f "$GRADLE" ]; then
             gradle test
           else
