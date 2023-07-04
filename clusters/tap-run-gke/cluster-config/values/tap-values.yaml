@@ -28,6 +28,10 @@ tap_install:
 
     namespace_provisioner:
       controller: true
+      overlay_secrets:
+      - name: overlay-disable-limitrange
+        namespace: tap-install
+        create_export: true
       additional_sources:
       - git:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
