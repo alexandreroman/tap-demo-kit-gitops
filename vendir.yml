@@ -14,6 +14,8 @@ directories:
   - path: .
     includePaths:
     - "**/*.yaml"
+    excludePaths:
+    - "addons/**"
     directory:
       path: clusters/shared/config
 
@@ -22,6 +24,8 @@ directories:
   - path: .
     includePaths:
     - "**/*.yaml"
+    excludePaths:
+    - "addons/**"
     directory:
       path: clusters/shared/config
 
@@ -30,6 +34,8 @@ directories:
   - path: .
     includePaths:
     - "**/*.yaml"
+    excludePaths:
+    - "addons/**"
     directory:
       path: clusters/shared/config
 
@@ -39,6 +45,7 @@ directories:
     includePaths:
     - "**/*.yaml"
     excludePaths:
+    - "addons/**"
     - "**/tap-gui-viewer-service-account-rbac.yaml"
     directory:
       path: clusters/shared/config
