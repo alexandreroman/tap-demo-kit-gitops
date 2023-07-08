@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: overlay-cnrs-enable-fieldref
+  namespace: tap-install
+  annotations:
+    kapp.k14s.io/change-group: pkgi
+stringData:
+  overlay-cnrs-enable-fieldref.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+
+    #@overlay/match by=overlay.subset({"metadata":{"name":"config-features"}, "kind": "ConfigMap"})
+    ---
+    data:
+      #@overlay/match missing_ok=True
+      kubernetes.podspec-fieldref: "enabled"
+    ---

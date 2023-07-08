@@ -32,6 +32,9 @@ tap_install:
     - name: tap-telemetry
       secrets:
       - name: overlay-disable-tap-telemetry
+    - name: cnrs
+      secrets:
+      - name: overlay-cnrs-enable-fieldref
 
     namespace_provisioner:
       controller: false
