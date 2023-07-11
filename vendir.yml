@@ -24,8 +24,6 @@ directories:
   - path: .
     includePaths:
     - "**/*.yaml"
-    excludePaths:
-    - "addons/**"
     directory:
       path: clusters/shared/config
 
@@ -34,8 +32,6 @@ directories:
   - path: .
     includePaths:
     - "**/*.yaml"
-    excludePaths:
-    - "addons/**"
     directory:
       path: clusters/shared/config
 
