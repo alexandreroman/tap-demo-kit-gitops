@@ -6,9 +6,6 @@ tap_install:
       ingress_domain: apps.withtanzu.com
       ingress_issuer: ""
 
-    excluded_packages:
-    - apis.apps.tanzu.vmware.com
-
     ceip_policy_disclosed: true
 
     supply_chain: basic
@@ -18,6 +15,9 @@ tap_install:
         repository: tanzu-application-platform/dev/workloads
       gitops:
         ssh_secret: git-credentials
+
+    api_auto_registration:
+      replicas: 0
 
     appliveview_connector:
       activateSensitiveOperations: true
