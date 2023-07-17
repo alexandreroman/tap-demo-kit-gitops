@@ -7,6 +7,6 @@ spec:
   packageRef:
     refName: application-configuration-service.tanzu.vmware.com
     versionSelection:
-      constraints: 2.0.6
+      constraints: ">= 2.0.0"
       prereleases: {}
   serviceAccountName: tap-install-sa

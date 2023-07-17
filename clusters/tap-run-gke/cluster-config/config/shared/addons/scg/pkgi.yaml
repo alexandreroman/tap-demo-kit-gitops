@@ -7,6 +7,6 @@ spec:
   packageRef:
     refName: spring-cloud-gateway.tanzu.vmware.com
     versionSelection:
-      constraints: 2.0.3
+      constraints: ">= 2.0.0"
       prereleases: {}
   serviceAccountName: tap-install-sa
