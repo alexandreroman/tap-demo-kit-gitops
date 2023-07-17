@@ -1,0 +1,12 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: tanzu-rabbitmq
+  namespace: tap-install
+spec:
+  packageRef:
+    refName: rabbitmq.tanzu.vmware.com
+    versionSelection:
+      constraints: ">= 1.4.0"
+      prereleases: {}
+  serviceAccountName: tap-install-sa
