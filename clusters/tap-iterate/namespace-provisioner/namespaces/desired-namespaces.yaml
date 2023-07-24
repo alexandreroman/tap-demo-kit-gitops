@@ -1,4 +1,8 @@
 #@data/values
 ---
 namespaces:
+#! System namespaces.
+- name: sso
+
+#! User namespaces.
 - name: aro
