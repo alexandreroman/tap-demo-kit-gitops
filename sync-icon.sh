@@ -13,5 +13,5 @@ tap_install:
       app_config:
         customize:
           custom_logo: "$ICON_BASE64"
-          custom_name: "Spring Application Platform"
+          custom_name: "Tanzu Application Platform ❤️ Spring"
 EOF
