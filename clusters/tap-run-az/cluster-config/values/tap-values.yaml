@@ -40,7 +40,3 @@ tap_install:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
           subPath: clusters/tap-run-az/namespace-provisioner/resources
-      - git:
-          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
-          ref: origin/main
-          subPath: clusters/tap-run-az/namespace-provisioner/overlays
