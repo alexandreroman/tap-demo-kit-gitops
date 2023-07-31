@@ -40,9 +40,7 @@ tap_install:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
           subPath: clusters/tap-run-gke/namespace-provisioner/resources
-        path: _ytt_lib/namespace-provisioner-resources
       - git:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
           subPath: clusters/tap-run-gke/namespace-provisioner/overlays
-        path: _ytt_lib/customize

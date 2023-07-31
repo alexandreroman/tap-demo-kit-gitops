@@ -46,9 +46,6 @@ tap_install:
     - name: tap-telemetry
       secrets:
       - name: overlay-disable-tap-telemetry
-    - name: ootb-supply-chain-testing-scanning
-      secrets:
-      - name: overlay-remove-source-scanner
 
     namespace_provisioner:
       controller: false
@@ -60,10 +57,8 @@ tap_install:
       - git:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
-          subPath: clusters/tap-build/namespace-provisioner/overlays
-        path: _ytt_lib/customize
-      - git:
-          url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
-          ref: origin/main
           subPath: clusters/tap-build/namespace-provisioner/resources
-        path: _ytt_lib/namespace-provisioner-resources
+      default_parameters:
+        supply_chain_service_account:
+          secrets:
+          - git-credentials

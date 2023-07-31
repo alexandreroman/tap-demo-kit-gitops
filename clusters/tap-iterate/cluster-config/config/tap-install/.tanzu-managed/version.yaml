@@ -8,6 +8,6 @@
 #@overlay/match missing_ok=True
 tap_install:
   version:
-    package_repo_bundle_tag: "1.5.0"
-    package_version: "1.5.0"
+    package_repo_bundle_tag: "1.6.1"
+    package_version: "1.6.1"
 

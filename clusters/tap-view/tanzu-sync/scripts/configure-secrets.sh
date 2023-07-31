@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-./tanzu-sync/scripts/sensitive-values.sh
+
+# Do Nothing for SoPS

@@ -16,6 +16,9 @@ tap_install:
       gitops:
         ssh_secret: git-credentials
 
+    local_source_proxy:
+      repository: tdkhub.azurecr.io/tanzu-application-platform/dev/workloads-source
+
     api_auto_registration:
       replicas: 0
 
@@ -47,4 +50,3 @@ tap_install:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
           subPath: clusters/tap-iterate/namespace-provisioner/resources
-        path: _ytt_lib/namespace-provisioner-resources
