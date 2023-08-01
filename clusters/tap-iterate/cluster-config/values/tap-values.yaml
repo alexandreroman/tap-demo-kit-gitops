@@ -17,7 +17,13 @@ tap_install:
         ssh_secret: git-credentials
 
     local_source_proxy:
-      repository: tdkhub.azurecr.io/tanzu-application-platform/dev/workloads-source
+      repository: tdkhub.azurecr.io/tanzu-application-platform/dev/workload
+      push_secret:
+        name: lsp-credentials
+        namespace: tap-secrets
+      pull_secret:
+        name: lsp-credentials
+        namespace: tap-secrets
 
     api_auto_registration:
       replicas: 0
