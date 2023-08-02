@@ -32,7 +32,7 @@ for CLUSTER in "${CLUSTERS[@]}"; do
               authProvider: serviceAccount
               serviceAccountToken: "$CLUSTER_TOKEN"
               skipTLSVerify: true
-              skipMetricsLookup: true
+              skipMetricsLookup: false
 EOF
 done
 
