@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: overlay-ootb-supply-chain-kpack-resources
+  namespace: tap-install
+  annotations:
+    kapp.k14s.io/change-group: pkgi
+stringData:
+  overlay-ootb-supply-chain-kpack-resources.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@ load("@ytt:yaml", "yaml")
+
+    #@ def kpackResources():
+    resources:
+      requests:
+        cpu: 4
+        memory: 4Gi
+      limits:
+        cpu: 8
+        memory: 8Gi
+    #@ end
+
+    #@ def indent(str, size):
+    #@   strLines = []
+    #@   indentStr = "  " * size
+    #@   for line in str.splitlines():
+    #@     strLines.append(indentStr + line)
+    #@   end
+    #@   return "\n".join(strLines)
+    #@ end
+
+    #@overlay/match by=overlay.subset({"kind":"ClusterImageTemplate", "metadata": {"name": "kpack-template"}})
+    ---
+    spec:
+        #@overlay/replace via=lambda left, right: left.replace("build:", "build:\n" + indent(yaml.encode(kpackResources()), 2))
+        ytt:
