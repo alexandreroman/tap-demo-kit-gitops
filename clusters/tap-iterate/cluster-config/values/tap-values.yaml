@@ -46,7 +46,7 @@ tap_install:
       - name: overlay-cnrs-enable-fieldref
     - name: ootb-templates
       secrets:
-      - name: overlay-ootb-supply-chain-kpack-resources
+      - name: overlay-ootb-supply-chain-kpack
 
     namespace_provisioner:
       controller: false
