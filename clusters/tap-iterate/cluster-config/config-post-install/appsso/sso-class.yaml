@@ -1,0 +1,11 @@
+apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
+kind: ClusterWorkloadRegistrationClass
+metadata:
+  name: sso
+  namespace: sso
+spec:
+  base:
+    spec:
+      authServerSelector:
+        matchLabels:
+          sso.apps.tanzu.vmware.com/env: iterate

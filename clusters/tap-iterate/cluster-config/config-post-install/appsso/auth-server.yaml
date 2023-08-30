@@ -4,7 +4,7 @@ metadata:
   name: login
   namespace: sso
   labels:
-    name: appsso
+    sso.apps.tanzu.vmware.com/env: iterate
   annotations:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""
