@@ -26,7 +26,9 @@ tap_install:
         namespace: tap-secrets
 
     api_auto_registration:
-      replicas: 0
+      replicas: 1
+      tap_gui_url: https://console.tap.withtanzu.com
+      cluster_name: tap-iterate
 
     appliveview_connector:
       activateSensitiveOperations: true
