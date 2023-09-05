@@ -9,7 +9,7 @@ tap_install:
     ceip_policy_disclosed: true
 
     appliveview_connector:
-      activateSensitiveOperations: false
+      activateSensitiveOperations: true
       backend:
         host: appliveview.tap.withtanzu.com
         ingressEnabled: true
