@@ -17,8 +17,8 @@ spec:
     notAllowedSeverities := ["Critical"]
 
     ignoreCves := [
-      'CVE-2023-32002',
-      'CVE-2023-32559'
+      "CVE-2023-32002",
+      "CVE-2023-32559"
     ]
 
     contains(array, elem) = true {
