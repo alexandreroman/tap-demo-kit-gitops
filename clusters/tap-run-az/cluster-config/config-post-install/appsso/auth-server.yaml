@@ -4,7 +4,8 @@ metadata:
   name: login
   namespace: sso
   labels:
-    sso.apps.tanzu.vmware.com/env: iterate
+    sso.apps.tanzu.vmware.com/env: run
+    sso.apps.tanzu.vmware.com/infra: az
   annotations:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""
@@ -22,7 +23,7 @@ spec:
   - name: auth0
     openID:
       issuerURI: https://dev-58yj7efmew5mc2rq.eu.auth0.com
-      clientID: DQxUTXBUETivouAvdOYkabkKy2XgqatN
+      clientID: YfAkgXhnKYR126t316EX4lnX4tQ3f84p
       clientSecretRef:
         name: auth0-openid-client-secret
       scopes:
