@@ -43,4 +43,3 @@ tap_install:
       secrets:
       - name: overlay-add-tap-gui-alias
       - name: overlay-patch-tap-gui-timeout
-      - name: overlay-configure-cors-tap-gui

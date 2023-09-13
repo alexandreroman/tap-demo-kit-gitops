@@ -10,11 +10,11 @@ metadata:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""
 spec:
   replicas: 1
   cors:
-    allowAllOrigins: true
+    allowOrigins:
+    - https://console.tap.withtanzu.com
   tokenSignature:
     signAndVerifyKeyRef:
       name: authserver-signing-key
