@@ -15,3 +15,17 @@ spec:
     fqdn: console.tap.withtanzu.com
     tls:
       secretName: tap-gui-cert
+    corsPolicy:
+      allowCredentials: true
+      allowPrivateNetwork: true
+      allowOrigin:
+      - "*"
+      allowMethods:
+      - GET
+      - POST
+      - OPTIONS
+      - DELETE
+      - HEAD
+      allowHeaders:
+      - authorization
+      - cache-control

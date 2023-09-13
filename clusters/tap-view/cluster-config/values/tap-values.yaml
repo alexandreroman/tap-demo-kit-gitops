@@ -32,6 +32,8 @@ tap_install:
           baseUrl: https://console.tap.withtanzu.com
         backend:
           baseUrl: https://console.tap.withtanzu.com
+          cors:
+            origin: https://console.tap.withtanzu.com
 
     package_overlays:
     - name: tap-telemetry
@@ -41,3 +43,4 @@ tap_install:
       secrets:
       - name: overlay-add-tap-gui-alias
       - name: overlay-patch-tap-gui-timeout
+      - name: overlay-configure-cors-tap-gui
