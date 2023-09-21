@@ -1,0 +1,25 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: sta-nodejs-trading-agent
+spec:
+  git:
+    ref:
+      branch: main
+    url: https://github.com/alexandreroman/sta-accelerators
+    subPath: nodejs-trading-agent
+    secretRef:
+      name: git-credentials
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: sta-spring-boot-trading-agent
+spec:
+  git:
+    ref:
+      branch: main
+    url: https://github.com/alexandreroman/sta-accelerators
+    subPath: spring-boot-trading-agent
+    secretRef:
+      name: git-credentials
