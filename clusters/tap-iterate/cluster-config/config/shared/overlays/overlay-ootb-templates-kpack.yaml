@@ -16,8 +16,8 @@ stringData:
         cpu: 4
         memory: 4Gi
       limits:
-        cpu: 8
-        memory: 8Gi
+        cpu: 12
+        memory: 16Gi
     #@ end
 
     #@ def kpackBuildLimits():
