@@ -18,6 +18,11 @@ tap_install:
       tap_gui_url: https://console.tap.withtanzu.com
       cluster_name: tap-run-gke
 
+    contour:
+      contour:
+        configFileContents:
+          num-trusted-hops: 1
+
     package_overlays:
     - name: tap-telemetry
       secrets:

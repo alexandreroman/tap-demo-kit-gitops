@@ -39,6 +39,11 @@ tap_install:
     springboot_conventions:
       autoConfigureActuators: true
 
+    contour:
+      contour:
+        configFileContents:
+          num-trusted-hops: 1
+
     package_overlays:
     - name: tap-telemetry
       secrets:
