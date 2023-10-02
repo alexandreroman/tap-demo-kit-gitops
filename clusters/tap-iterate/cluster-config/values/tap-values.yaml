@@ -42,7 +42,10 @@ tap_install:
     contour:
       contour:
         configFileContents:
-          num-trusted-hops: 1
+          num-trusted-hops: 2
+      envoy:
+        service:
+          externalTrafficPolicy: Local
 
     package_overlays:
     - name: tap-telemetry
