@@ -46,6 +46,9 @@ tap_install:
     - name: tap-telemetry
       secrets:
       - name: overlay-disable-tap-telemetry
+    - name: ootb-templates
+      secrets:
+      - name: overlay-ootb-supply-chain-kpack
 
     namespace_provisioner:
       controller: false
