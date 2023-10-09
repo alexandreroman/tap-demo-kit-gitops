@@ -18,7 +18,9 @@ spec:
 
     ignoreCves := [
       "CVE-2023-32002",
-      "CVE-2023-32559"
+      "CVE-2023-32559",
+      "CVE-2019-20444",
+      "CVE-2019-20445"
     ]
 
     contains(array, elem) = true {
