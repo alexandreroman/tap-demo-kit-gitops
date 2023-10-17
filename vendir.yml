@@ -1,6 +1,16 @@
 apiVersion: vendir.k14s.io/v1alpha1
 kind: Config
 directories:
+- path: clusters/shared/config/addons/otel
+  contents:
+  - path: .
+    githubRelease:
+      slug: open-telemetry/opentelemetry-operator
+      tag: v0.86.0
+      disableAutoChecksumValidation: true
+      assetNames:
+      - opentelemetry-operator.yaml
+
 - path: clusters/tap-iterate/cluster-config/config/shared
   contents:
   - path: .

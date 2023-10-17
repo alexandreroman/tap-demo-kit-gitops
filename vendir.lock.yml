@@ -1,6 +1,12 @@
 apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
+  - githubRelease:
+      tag: v0.86.0
+      url: https://api.github.com/repos/open-telemetry/opentelemetry-operator/releases/124419525
+    path: .
+  path: clusters/shared/config/addons/otel
+- contents:
   - directory: {}
     path: .
   path: clusters/tap-iterate/cluster-config/config/shared
