@@ -1,10 +1,10 @@
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Accelerator
 metadata:
-  name: awesome-spring-boot-frontend
+  name: awesome-node-express
 spec:
   git:
     ref:
-      branch: main
+      branch: v2
     url: https://github.com/alexandreroman/awesome-tap-accelerators
-    subPath: spring-boot-frontend
+    subPath: node-express
