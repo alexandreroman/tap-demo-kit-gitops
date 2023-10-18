@@ -5,6 +5,6 @@ metadata:
 spec:
   git:
     ref:
-      branch: v2
+      branch: main
     url: https://github.com/alexandreroman/awesome-tap-accelerators
     subPath: node-express
