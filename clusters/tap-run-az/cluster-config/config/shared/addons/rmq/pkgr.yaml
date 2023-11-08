@@ -6,4 +6,4 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      image: tdkhub.azurecr.io/tanzu-rabbitmq:1.5.0
+      image: tdkhub.azurecr.io/tanzu-rabbitmq:1.5.1
