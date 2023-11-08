@@ -35,10 +35,6 @@ tap_install:
           name: store-auth-token
           importFromNamespace: tap-secrets
 
-    scanning:
-      metadataStore:
-        url: ""
-
     springboot_conventions:
       autoConfigureActuators: true
 
