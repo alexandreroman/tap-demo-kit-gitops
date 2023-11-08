@@ -17,7 +17,7 @@ tap_install:
             clusters:
 EOF
 
-CLUSTERS=("tap-iterate" "tap-build" "tap-run-az" "tap-run-gke")
+CLUSTERS=("tap-iterate" "tap-build")
 for CLUSTER in "${CLUSTERS[@]}"; do
   echo "Getting access to cluster $CLUSTER..."
   kubectx $CLUSTER
