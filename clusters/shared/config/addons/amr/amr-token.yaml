@@ -1,0 +1,7 @@
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretImport
+metadata:
+  name: amr-observer-edit-token
+  namespace: amr-observer-system
+spec:
+  fromNamespace: tap-secrets

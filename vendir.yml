@@ -16,6 +16,8 @@ directories:
   - path: .
     includePaths:
     - "**/*.yaml"
+    excludePaths:
+    - "addons/amr/**"
     directory:
       path: clusters/shared/config
 
@@ -25,7 +27,10 @@ directories:
     includePaths:
     - "**/*.yaml"
     excludePaths:
-    - "addons/**"
+    - "addons/acs/**"
+    - "addons/otel/**"
+    - "addons/rmq/**"
+    - "addons/scg/**"
     directory:
       path: clusters/shared/config
 

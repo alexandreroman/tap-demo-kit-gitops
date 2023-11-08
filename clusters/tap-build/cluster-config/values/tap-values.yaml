@@ -24,7 +24,6 @@ tap_install:
         branch: main
 
     grype:
-      namespace: "default"
       targetImagePullSecret: "registry-credentials"
       metadataStore:
         url: https://metadata-store.tap.withtanzu.com
