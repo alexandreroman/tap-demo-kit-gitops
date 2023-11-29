@@ -3,7 +3,7 @@ kind: Secret
 metadata:
   name: app-overlays
 stringData:
-  overlay-app-probeless.yaml: |
+  overlay-app-delayed-probes.yaml: |
     #@ load("@ytt:overlay", "overlay")
     #@overlay/match by=overlay.subset({"kind":"Deployment"}), expects="0+"
     ---
@@ -13,9 +13,12 @@ stringData:
           containers:
           #@overlay/match by=overlay.index(0)
           - name: workload
-            #@overlay/remove
+            #@overlay/match-child-defaults missing_ok=True
             livenessProbe:
-            #@overlay/remove
+              initialDelaySeconds: 30
+            #@overlay/match-child-defaults missing_ok=True
             readinessProbe:
-            #@overlay/remove
+              initialDelaySeconds: 30
+            #@overlay/match-child-defaults missing_ok=True
             startupProbe:
+              initialDelaySeconds: 30
