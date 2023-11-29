@@ -58,6 +58,7 @@ tap_install:
     - name: ootb-templates
       secrets:
       - name: overlay-ootb-supply-chain-kpack
+      - name: overlay-ootb-templates-app-overlays
 
     namespace_provisioner:
       controller: false
