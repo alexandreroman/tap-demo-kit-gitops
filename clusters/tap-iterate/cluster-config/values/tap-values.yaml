@@ -71,3 +71,7 @@ tap_install:
           url: https://github.com/alexandreroman/tap-demo-kit-gitops.git
           ref: origin/main
           subPath: clusters/tap-iterate/namespace-provisioner/resources
+      default_parameters:
+        supply_chain_service_account:
+          secrets:
+          - git-credentials
