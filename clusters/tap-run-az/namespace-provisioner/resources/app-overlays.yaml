@@ -14,6 +14,7 @@ stringData:
           #@overlay/match by=overlay.index(0)
           - name: workload
             livenessProbe:
+              #@overlay/match missing_ok=true
               failureThreshold: 100
             #@overlay/remove
             readinessProbe:
